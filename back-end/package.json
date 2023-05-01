@@ -1,0 +1,11 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "ecommerce app",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "author": "Eden Zewdu",
+  "license": "MIT"
+}
