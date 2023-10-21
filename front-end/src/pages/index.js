@@ -7,8 +7,9 @@ const Home = () => {
     <div className="home">
       <h1>Welcome to Ethiopian Traditions</h1>
       <p>Discover the beauty of traditional Ethiopian clothing</p>
-      <div >
-        <FaShoppingCart  />
+      <div className="icon-container">
+        <FaReact className="icon" />
+        <FaShoppingCart className="icon" />
       </div>
       <button className="shop-now-btn">Shop Now</button>
     </div>
