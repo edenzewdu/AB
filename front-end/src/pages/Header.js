@@ -9,11 +9,11 @@ const Header = () => {
   return (
     <div>
       <div>
-      <lord-icon
+<lord-icon
     src="https://cdn.lordicon.com/cosvjkbu.json"
     trigger="hover"
-    colors="primary:#c7166f,secondary:#911051,tertiary:#5c0a33"
-    style={{width:"250px", height:'250px'}}>
+    colors="primary:#6c16c7,secondary:#4f1091,tertiary:#320a5c"
+    style={{width:'100px',height:'100px'}}>
 </lord-icon>
       </div>
       <div>
