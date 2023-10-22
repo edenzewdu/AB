@@ -1,16 +1,19 @@
-import lottie from "lottie-web";
-import { defineElement } from "@lordicon/element";
+import React from 'react';
+import lottie from 'lottie-web';
+import { defineElement } from '@lordicon/element';
 
-// define "lord-icon" custom element with default properties
+// Define "lord-icon" custom element with default properties
 defineElement(lottie.loadAnimation);
+
 const Header = () => {
   return (
-<eiv>
-<lord-icon
+    <div>
+      <lord-icon
         src="../Images/Lordicon/wired-flat-146-trolley.json"
         trigger="hover"
       ></lord-icon>
-</eiv>
-  )};
+    </div>
+  );
+};
 
-  export default  Header;
+export default Header;
