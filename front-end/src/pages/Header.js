@@ -10,7 +10,6 @@ const Header = () => {
     <div>
       <lord-icon
         src="../Images/Lordicon/wired-flat-146-trolley.json"
-        trigger="hover"
       ></lord-icon>
     </div>
   );
