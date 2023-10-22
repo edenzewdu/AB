@@ -8,9 +8,14 @@ defineElement(lottie.loadAnimation);
 const Header = () => {
   return (
     <div>
-      <lord-icon
-        src="../Images/Lordicon/wired-flat-146-trolley.json"
-      ></lord-icon>
+      <div>
+        <lord-icon
+          src={require('../Images/Lordicon/wired-flat-146-trolley.json')}
+        ></lord-icon>
+      </div>
+      <div>
+        <img src={require('../Images/AB_ETHIOPIAN_TRADITIONAL_CLOTHES__2_-removebg-preview.png')} alt='logo' />
+      </div>
     </div>
   );
 };
