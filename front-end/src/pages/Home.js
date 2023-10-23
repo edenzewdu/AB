@@ -35,15 +35,17 @@ const NetelaAnimation = () => {
     <>
       <div id="person"></div>
       <div id="wardrobe"></div>
-      {isNetelaVisible && (
-        <div
-          id="netela"
-          style={{
-            backgroundImage: `url(${netelaAnimationImage})`,
-            backgroundSize: 'cover',
-          }}
-        ></div>
-      )}
+      <div id="netela-container">
+        {isNetelaVisible && (
+          <div
+            id="netela"
+            style={{
+              backgroundImage: `url(${netelaAnimationImage})`,
+              backgroundSize: 'cover',
+            }}
+          ></div>
+        )}
+      </div>
     </>
   );
 };
