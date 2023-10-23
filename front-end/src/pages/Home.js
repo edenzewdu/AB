@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Home.css';
 import Header from './Header.js';
+import netelaAnimationImage from '../Images/netelaAnimation.jpg';
 
 const NetelaAnimation = () => {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -26,7 +27,7 @@ const NetelaAnimation = () => {
               left: '200px',
               width: '100px',
               height: '100px',
-              backgroundImage: `url('../Images/netelaAnimation.jpg')`,
+              backgroundImage: `url(${netelaAnimationImage})`,
               backgroundSize: 'cover',
             }}
           ></div>
