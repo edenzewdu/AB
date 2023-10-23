@@ -6,25 +6,39 @@ import netelaAnimationImage from '../Images/netelaAnimation.jpg';
 const NetelaAnimation = () => {
   const [isNetelaVisible, setIsNetelaVisible] = useState(true);
   const [isAnimationStarted, setIsAnimationStarted] = useState(false);
+  const [isAnimationFinished, setIsAnimationFinished] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       const netela = document.getElementById('netela');
-      if (!netela) return; // Exit early if the element is not found
-  
+      const person = document.getElementById('person');
+      
+      if (!netela || !person) return; // Exit early if the elements are not found
+
       const windowHeight = window.innerHeight;
       const netelaPosition = netela.getBoundingClientRect().top;
-  
-      if (netelaPosition < windowHeight && !isAnimationStarted) {
+
+      if (netelaPosition < windowHeight && !isAnimationStarted && !isAnimationFinished) {
         setIsAnimationStarted(true);
         setIsNetelaVisible(false);
       }
+
+      if (isAnimationFinished && netelaPosition > windowHeight) {
+        setIsAnimationFinished(false);
+        setIsAnimationStarted(false);
+        setIsNetelaVisible(true);
+      }
     };
-  
+
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isAnimationStarted]);
+  }, [isAnimationStarted, isAnimationFinished]);
+
+  const handleAnimationEnd = () => {
+    setIsAnimationFinished(true);
+  };
 
   return (
     <>
@@ -39,7 +53,11 @@ const NetelaAnimation = () => {
       )}
       {isAnimationStarted && (
         <div id="wardrobe">
-          <div id="person" className="person-animation"></div>
+          <div
+            id="person"
+            className={`person-animation ${isAnimationFinished ? 'reset-animation' : ''}`}
+            onAnimationEnd={handleAnimationEnd}
+          ></div>
         </div>
       )}
     </>
