@@ -5,23 +5,16 @@ import netelaAnimationImage from '../Images/netelaAnimation.jpg';
 
 const NetelaAnimation = () => {
   const [isNetelaVisible, setIsNetelaVisible] = useState(true);
+  const [isAnimationStarted, setIsAnimationStarted] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const netela = document.getElementById('netela');
-      const wardrobe = document.getElementById('wardrobe');
       const windowHeight = window.innerHeight;
-      const netelaPosition = netela.getBoundingClientRect().top;
-      const wardrobePosition = wardrobe.getBoundingClientRect().top;
+      const netelaPosition = document.getElementById('netela').getBoundingClientRect().top;
 
-      if (netelaPosition < windowHeight && isNetelaVisible) {
+      if (netelaPosition < windowHeight && !isAnimationStarted) {
+        setIsAnimationStarted(true);
         setIsNetelaVisible(false);
-        netela.classList.add('netela-animation');
-      }
-
-      if (wardrobePosition < windowHeight && !isNetelaVisible) {
-        setIsNetelaVisible(true);
-        netela.classList.remove('netela-animation');
       }
     };
 
@@ -29,23 +22,24 @@ const NetelaAnimation = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isNetelaVisible]);
+  }, [isAnimationStarted]);
 
   return (
     <>
-      <div id="person"></div>
-      <div id="wardrobe"></div>
-      <div id="netela-container">
-        {isNetelaVisible && (
-          <div
-            id="netela"
-            style={{
-              backgroundImage: `url(${netelaAnimationImage})`,
-              backgroundSize: 'cover',
-            }}
-          ></div>
-        )}
-      </div>
+      {isNetelaVisible && (
+        <div
+          id="netela"
+          style={{
+            backgroundImage: `url(${netelaAnimationImage})`,
+            backgroundSize: 'cover',
+          }}
+        ></div>
+      )}
+      {isAnimationStarted && (
+        <div id="wardrobe">
+          <div id="person" className="person-animation"></div>
+        </div>
+      )}
     </>
   );
 };
