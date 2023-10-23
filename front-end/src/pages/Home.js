@@ -6,18 +6,20 @@ import netelaAnimationImage from '../Images/netelaAnimation.jpg';
 const NetelaAnimation = () => {
   const [isNetelaVisible, setIsNetelaVisible] = useState(true);
   const [isAnimationStarted, setIsAnimationStarted] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
+      const netela = document.getElementById('netela');
+      if (!netela) return; // Exit early if the element is not found
+  
       const windowHeight = window.innerHeight;
-      const netelaPosition = document.getElementById('netela').getBoundingClientRect().top;
-
+      const netelaPosition = netela.getBoundingClientRect().top;
+  
       if (netelaPosition < windowHeight && !isAnimationStarted) {
         setIsAnimationStarted(true);
         setIsNetelaVisible(false);
       }
     };
-
+  
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
