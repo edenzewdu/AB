@@ -1,38 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Home.css';
 import Header from './Header.js';
 import netelaAnimationImage from '../Images/netelaAnimation.jpg';
 
 const NetelaAnimation = () => {
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [isNetelaVisible, setIsNetelaVisible] = useState(true);
 
-  const animateNetela = () => {
-    setIsAnimating(true);
-    setTimeout(() => {
-      setIsAnimating(false);
-    }, 1000); // adjust the timeout value to match the transition duration
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const netela = document.getElementById('netela');
+      const wardrobe = document.getElementById('wardrobe');
+      const windowHeight = window.innerHeight;
+      const netelaPosition = netela.getBoundingClientRect().top;
+      const wardrobePosition = wardrobe.getBoundingClientRect().top;
+
+      if (netelaPosition < windowHeight && isNetelaVisible) {
+        setIsNetelaVisible(false);
+        netela.classList.add('netela-animation');
+      }
+
+      if (wardrobePosition < windowHeight && !isNetelaVisible) {
+        setIsNetelaVisible(true);
+        netela.classList.remove('netela-animation');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isNetelaVisible]);
 
   return (
     <>
-      <button onClick={animateNetela}>Start Animation</button>
-
       <div id="person"></div>
-      <div id="wardrobe">
-        {!isAnimating && (
-          <div
-            style={{
-              position: 'absolute',
-              top: '200px',
-              left: '200px',
-              width: '100px',
-              height: '100px',
-              backgroundImage: `url(${netelaAnimationImage})`,
-              backgroundSize: 'cover',
-            }}
-          ></div>
-        )}
-      </div>
+      <div id="wardrobe"></div>
+      {isNetelaVisible && (
+        <div
+          id="netela"
+          style={{
+            backgroundImage: `url(${netelaAnimationImage})`,
+            backgroundSize: 'cover',
+          }}
+        ></div>
+      )}
     </>
   );
 };
