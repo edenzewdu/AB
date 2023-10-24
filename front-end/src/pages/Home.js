@@ -4,6 +4,7 @@ import Header from './Header.js';
 import netelaAnimationImage from '../Images/netelaAnimation.jpg';
 import netellaImage from '../Images/netelaAnimation-removebg-preview.png';
 import wardrobeImage from '../Images/wardrobe.png';
+import backgroundImage from '../Images/beauty girl wind blows.gif';
 
 // const NetelaAnimation = () => {
 //   const [scrollPosition, setScrollPosition] = useState(0);
@@ -75,9 +76,8 @@ const Home = () => {
     <div className="home">
       <Header />
       <div className="body">
-      <div>
-          <video src="../Images/beauty girl wind blows.mp4" autoPlay loop muted playsInline />
-          <img src={netelaAnimationImage} alt="Background" className="video-overlay" />
+        <div>
+          <img src={backgroundImage} alt="Background" className="gif-image" />
         </div>
         <div>
           <h1>Welcome to Ethiopian Traditions</h1>
