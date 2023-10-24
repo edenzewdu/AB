@@ -4,7 +4,6 @@ import Header from './Header.js';
 import netelaAnimationImage from '../Images/netelaAnimation.jpg';
 import netellaImage from '../Images/netelaAnimation-removebg-preview.png';
 import wardrobeImage from '../Images/wardrobe.png';
-import backgroundImage from '../Images/beauty-girl-wind-blows.jpg';
 
 // const NetelaAnimation = () => {
 //   const [scrollPosition, setScrollPosition] = useState(0);
