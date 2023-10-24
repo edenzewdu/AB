@@ -2,67 +2,59 @@ import React, { useState, useEffect } from 'react';
 import './Home.css';
 import Header from './Header.js';
 import netelaAnimationImage from '../Images/netelaAnimation.jpg';
+import WardRobe from '../Images/wardrobe.png';
 
 const NetelaAnimation = () => {
-  const [isNetelaVisible, setIsNetelaVisible] = useState(true);
-  const [isAnimationStarted, setIsAnimationStarted] = useState(false);
-  const [isAnimationFinished, setIsAnimationFinished] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const netela = document.getElementById('netela');
-      const person = document.getElementById('person');
-      
-      if (!netela || !person) return; // Exit early if the elements are not found
-
-      const windowHeight = window.innerHeight;
-      const netelaPosition = netela.getBoundingClientRect().top;
-
-      if (netelaPosition < windowHeight && !isAnimationStarted && !isAnimationFinished) {
-        setIsAnimationStarted(true);
-        setIsNetelaVisible(false);
-      }
-
-      if (isAnimationFinished && netelaPosition > windowHeight) {
-        setIsAnimationFinished(false);
-        setIsAnimationStarted(false);
-        setIsNetelaVisible(true);
-      }
+      const position = window.scrollY;
+      setScrollPosition(position);
     };
 
     window.addEventListener('scroll', handleScroll);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isAnimationStarted, isAnimationFinished]);
-
-  const handleAnimationEnd = () => {
-    setIsAnimationFinished(true);
-  };
+  }, []);
 
   return (
-    <>
-      {isNetelaVisible && (
-        <div
-          id="netela"
+    <div className="App" style={{ height: '2000px' }}>
+      <div className="container" style={{ position: 'relative' }}>
+        <img
+          src='netelaAnimationImage'
+          alt="Beautiful Girl with Netella"
           style={{
-            backgroundImage: `url(${netelaAnimationImage})`,
-            backgroundSize: 'cover',
+            position: 'absolute',
+            top: `${scrollPosition}px`,
+            transition: 'top 0.5s ease',
           }}
-        ></div>
-      )}
-      {isAnimationStarted && (
-        <div id="wardrobe">
-          <div
-            id="person"
-            className={`person-animation ${isAnimationFinished ? 'reset-animation' : ''}`}
-            onAnimationEnd={handleAnimationEnd}
-          ></div>
-        </div>
-      )}
-    </>
+        />
+        <img
+          src="netella.png"
+          alt="Netella"
+          style={{
+            position: 'absolute',
+            top: `${scrollPosition + 500}px`,
+            transition: 'top 0.5s ease',
+          }}
+        />
+        <img
+          src="wardrobe"
+          alt="Wardrobe"
+          style={{
+            position: 'absolute',
+            top: `${scrollPosition + 1000}px`,
+            transition: 'top 0.5s ease',
+          }}
+        />
+      </div>
+    </div>
   );
 };
+
 
 const Home = () => {
   return (
