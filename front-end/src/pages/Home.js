@@ -24,7 +24,7 @@ const NetelaAnimation = () => {
     <div className="App" style={{ height: '2000px' }}>
       <div className="container" style={{ position: 'relative' }}>
         <img
-          src='netelaAnimationImage'
+          src={netelaAnimationImage}
           alt="Beautiful Girl with Netella"
           style={{
             position: 'absolute',
@@ -42,7 +42,7 @@ const NetelaAnimation = () => {
           }}
         />
         <img
-          src="wardrobe"
+          src={WardRobe}
           alt="Wardrobe"
           style={{
             position: 'absolute',
