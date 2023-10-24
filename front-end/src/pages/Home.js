@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './Home.css';
 import Header from './Header.js';
 import netelaAnimationImage from '../Images/netelaAnimation.jpg';
-import WardRobe from '../Images/wardrobe.png';
+import netellaImage from '../Images/netelaAnimation-removebg-preview.png';
+import wardrobeImage from '../Images/wardrobe.png';
 
 const NetelaAnimation = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [netellaPosition, setNetellaPosition] = useState(500);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +22,16 @@ const NetelaAnimation = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (scrollPosition < 50) {
+      setNetellaPosition(50);
+    } else if (scrollPosition >= 50 && scrollPosition < 100) {
+      setNetellaPosition(scrollPosition);
+    } else {
+      setNetellaPosition(1000);
+    }
+  }, [scrollPosition]);
+
   return (
     <div className="App" style={{ height: '2000px' }}>
       <div className="container" style={{ position: 'relative' }}>
@@ -33,16 +45,16 @@ const NetelaAnimation = () => {
           }}
         />
         <img
-          src="netella.png"
+          src={netellaImage}
           alt="Netella"
           style={{
             position: 'absolute',
-            top: `${scrollPosition + 500}px`,
+            top: `${netellaPosition}px`,
             transition: 'top 0.5s ease',
           }}
         />
         <img
-          src={WardRobe}
+          src={wardrobeImage}
           alt="Wardrobe"
           style={{
             position: 'absolute',
@@ -54,7 +66,6 @@ const NetelaAnimation = () => {
     </div>
   );
 };
-
 
 const Home = () => {
   return (
