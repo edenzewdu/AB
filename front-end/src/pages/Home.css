@@ -92,3 +92,43 @@
   animation-name: none;
   transform: translateX(-50%) translateY(0);
 }
+
+.home {
+  display: flex;
+}
+
+.gif-image {
+  width: 50%;
+  height: auto;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+h1 {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+.shop-now-btn {
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .home {
+    flex-direction: column;
+  }
+
+  .gif-image {
+    width: 100%;
+  }
+}
