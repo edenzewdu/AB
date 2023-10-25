@@ -76,23 +76,17 @@ const Home = () => {
     <div className="home">
       <Header />
       <div className="body">
-      <div className="image-container">
-          <div className="crop-container">
-        <div className="video-container">
-          <div style={{ height: '360px', width: '300px', position: 'relative' }}>
+          <div className="iframe" >
             <iframe
               allow="autoplay; gyroscope;"
               allowFullScreen
               height="100%"
               referrerPolicy="strict-origin"
               src="https://www.kapwing.com/e/65383a8a4f7a3a40acf18415"
-              style={{ border: '0', height: '100%', left: '0', overflow: 'hidden', position: 'absolute', top: '0', width: '100%' }}
+              style={{ border: '0', height: '100%', left: '0', overflow: 'hidden', position: 'absolute', top: '0', width: '100%', bottom:'-20px' }}
               title="Embedded content made on Kapwing"
               width="100%"
             ></iframe>
-            </div>
-            </div>
-          </div>
         </div>
         <div className="content">
           <h1>Welcome to Ethiopian Traditions</h1>
