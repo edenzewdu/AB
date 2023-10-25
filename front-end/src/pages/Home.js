@@ -71,27 +71,48 @@ import backgroundImage from '../Images/beauty girl wind blows (2).gif';
 //   );
 // };
 
+const AnimatedObject = ({ image, animationDelay }) => {
+  const animatedProps = useSpring({
+    from: { opacity: 0, transform: 'translateY(100px)' },
+    to: { opacity: 1, transform: 'translateY(0)' },
+    config: { duration: 1000, delay: animationDelay },
+  });
+
+  return (
+    <animated.div style={animatedProps}>
+      <img src={image} alt="Animated Object" />
+    </animated.div>
+  );
+};
+
 const Home = () => {
   return (
     <div className="home">
       <Header />
       <div className="body">
-          <div className="iframe" >
-            <iframe
-              allow="autoplay; gyroscope;"
-              allowFullScreen
-              height="100%"
-              referrerPolicy="strict-origin"
-              src="https://www.kapwing.com/e/65383a8a4f7a3a40acf18415"
-              style={{ border: '0', height: '100%', left: '0', overflow: 'hidden', position: 'absolute', top: '0', width: '100%', bottom:'-20px' }}
-              title="Embedded content made on Kapwing"
-              width="100%"
-            ></iframe>
+        <div className="iframe">
+
+          <iframe
+            allow="autoplay; gyroscope;"
+            allowFullScreen
+            height="100%"
+            referrerPolicy="strict-origin"
+            src="https://www.kapwing.com/e/65383a8a4f7a3a40acf18415"
+            style={{ border: '0', height: '100%', left: '0', overflow: 'hidden', position: 'absolute', top: '0', width: '100%', bottom: '-20px' }}
+            title="Embedded content made on Kapwing"
+            width="100%"
+          ></iframe>
+
         </div>
         <div className="content">
           <h1>Welcome to Ethiopian Traditions</h1>
           <p>Discover the beauty of traditional Ethiopian clothing</p>
           <button className="shop-now-btn">Shop Now</button>
+          <div className="animated-objects">
+            <AnimatedObject image={netelaAnimationImage} animationDelay={500} />
+            <AnimatedObject image={netellaImage} animationDelay={800} />
+            <AnimatedObject image={wardrobeImage} animationDelay={1100} />
+          </div>
         </div>
       </div>
     </div>
