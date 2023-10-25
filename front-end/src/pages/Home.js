@@ -76,9 +76,22 @@ const Home = () => {
     <div className="home">
       <Header />
       <div className="body">
-        <div className="image-container">
+      <div className="image-container">
           <div className="crop-container">
-            <img src={backgroundImage} alt="Background" className="gif-image" />
+        <div className="video-container">
+          <div style={{ height: '360px', width: '300px', position: 'relative' }}>
+            <iframe
+              allow="autoplay; gyroscope;"
+              allowFullScreen
+              height="100%"
+              referrerPolicy="strict-origin"
+              src="https://www.kapwing.com/e/65383a8a4f7a3a40acf18415"
+              style={{ border: '0', height: '100%', left: '0', overflow: 'hidden', position: 'absolute', top: '0', width: '100%' }}
+              title="Embedded content made on Kapwing"
+              width="100%"
+            ></iframe>
+            </div>
+            </div>
           </div>
         </div>
         <div className="content">
