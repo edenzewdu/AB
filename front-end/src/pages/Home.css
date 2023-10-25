@@ -95,19 +95,33 @@
 
 .home {
   display: flex;
-}
-
-.gif-image {
-  width: 50%;
-  height: auto;
+  flex-direction: column;
 }
 
 .body {
   display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.image-container {
+  flex: 1;
+  max-width: 50%;
+}
+
+.gif-image {
+  width: 100%;
+  height: calc(100% - 50px);
+  object-fit: cover;
+}
+
+.content {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
 }
 
 h1 {
@@ -121,14 +135,4 @@ p {
 
 .shop-now-btn {
   margin-top: 2rem;
-}
-
-@media (max-width: 768px) {
-  .home {
-    flex-direction: column;
-  }
-
-  .gif-image {
-    width: 100%;
-  }
 }

@@ -4,7 +4,7 @@ import Header from './Header.js';
 import netelaAnimationImage from '../Images/netelaAnimation.jpg';
 import netellaImage from '../Images/netelaAnimation-removebg-preview.png';
 import wardrobeImage from '../Images/wardrobe.png';
-import backgroundImage from '../Images/beauty girl wind blows.gif';
+import backgroundImage from '../Images/beauty girl wind blows (2).gif';
 
 // const NetelaAnimation = () => {
 //   const [scrollPosition, setScrollPosition] = useState(0);
@@ -76,10 +76,12 @@ const Home = () => {
     <div className="home">
       <Header />
       <div className="body">
-        <div>
-          <img src={backgroundImage} alt="Background" className="gif-image" />
+        <div className="image-container">
+          <div className="crop-container">
+            <img src={backgroundImage} alt="Background" className="gif-image" />
+          </div>
         </div>
-        <div>
+        <div className="content">
           <h1>Welcome to Ethiopian Traditions</h1>
           <p>Discover the beauty of traditional Ethiopian clothing</p>
           <button className="shop-now-btn">Shop Now</button>
