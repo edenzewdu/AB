@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSpring, animated } from 'react-spring';
 import './Home.css';
 import Header from './Header.js';
 import netelaAnimationImage from '../Images/netelaAnimation.jpg';
