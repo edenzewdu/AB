@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import lottie from 'lottie-web';
 import { defineElement } from '@lordicon/element';
-import logo from '../Images/Lordicon/logo.JSON'
+import logo from '../Images/Lordicon/logo.JSON';
 
 // Define "lord-icon" custom element with default properties
 defineElement(lottie.loadAnimation);
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div>
       <div className='header'>
@@ -27,32 +33,57 @@ const Header = () => {
           ></lord-icon>
         </div>
       </div>
-      <div className='pp' >
-
-        <div className='ppp' >
-          <div className='profile-picture' >
-            <img alt="Profile" className="logo-image" style={{
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              marginRight: '10px',
-            }} />
-            <div style={{ width: '45px', height: '45px', margin: '17px', marginRight: '10px', borderRadius: '50%', backgroundImage: 'linear-gradient(to right, rgb(250, 130, 10), rgb(300, 200, 0))', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <span style={{ fontSize: '24px', color: 'white', justifyContent: 'center' }}>
-              </span>
+      <div className='pp'>
+        <div className='ppp'>
+          <div className='profile-picture'>
+            <img
+              alt="Profile"
+              className="logo-image"
+              style={{
+                width: '50px',
+                height: '50px',
+                borderRadius: '50%',
+                marginRight: '10px',
+              }}
+            />
+            <div
+              style={{
+                width: '45px',
+                height: '45px',
+                margin: '17px',
+                marginRight: '10px',
+                borderRadius: '50%',
+                backgroundImage: 'linear-gradient(to right, rgb(250, 130, 10), rgb(300, 200, 0))',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <span style={{ fontSize: '24px', color: 'white', justifyContent: 'center' }}></span>
             </div>
-            <div style={{ fontSize: '17px', fontStyle: 'italic', fontWeight: 'bold', justifyContent: 'center', marginTop: '30px', marginRight: '10px' }}></div>
+            <div
+              style={{
+                fontSize: '17px',
+                fontStyle: 'italic',
+                fontWeight: 'bold',
+                justifyContent: 'center',
+                marginTop: '30px',
+                marginRight: '10px',
+              }}
+            ></div>
           </div>
           <div className='login-box' style={{ justifyContent: 'right' }}>
-            <a className='login' >
-              Logout
-            </a>
+            <a className='login'>Logout</a>
           </div>
         </div>
         <div className='login-section'>
-          <div className='login-box' style={{
-            textAlign: 'right', width: '110PX'
-          }}>
+          <div
+            className='login-box'
+            style={{
+              textAlign: 'right',
+              width: '110PX',
+            }}
+          >
             <img src={{}} alt='login-icon' className='login-icon' style={{ width: '20PX' }}></img>
           </div>
         </div>
@@ -61,6 +92,18 @@ const Header = () => {
         {/* Use the JSON data to set the image source */}
         {/* <img src={logoUrl} alt='logo' /> */}
       </div>
+      {/* Menu */}
+      <div className={`menu ${isMenuOpen ? 'open' : ''}`}>
+        <ul>
+          <a href='/home'><li>Home</li></a>
+          <a href='/about'><li>About</li></a>
+          <li>Services</li>
+          <li>Contact</li>
+        </ul>
+      </div>
+      <button className="menu-toggle" onClick={toggleMenu}>
+        {isMenuOpen ? 'Close Menu' : 'Open Menu'}
+      </button>
     </div>
   );
 };
