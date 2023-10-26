@@ -7,6 +7,7 @@ import netellaImage from '../Images/netelaAnimation-removebg-preview.png';
 import wardrobeImage from '../Images/wardrobe.png';
 import backgroundImage from '../Images/giphy.gif';
 
+
 // const NetelaAnimation = () => {
 //   const [scrollPosition, setScrollPosition] = useState(0);
 //   const [netelaVisible, setNetelaVisible] = useState(false);
@@ -92,7 +93,7 @@ const Home = () => {
       <Header />
       <div className="body">
         <div className="background">
-          <img src={backgroundImage} alt="Background" />
+          {/* <img src={backgroundImage} alt="Background" /> */}
              </div>
         <div className="content">
           <h1>Welcome to Ethiopian Traditions</h1>
