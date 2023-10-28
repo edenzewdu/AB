@@ -9,6 +9,18 @@ from .serializers import (
     CartSerializer
 )
 
+from django.http import JsonResponse
+
+def getRoutes(request):
+    routes = [
+        '/categories/',
+        '/products/',
+        '/orders/',
+        '/reviews/',
+        '/carts/',
+    ]
+    return JsonResponse({'routes': routes})
+
 class CategoryListView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
