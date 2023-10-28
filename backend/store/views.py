@@ -1,18 +1,20 @@
 from rest_framework import generics
-from .models import Category, Product, Order, OrderItem, Review, Cart
+from .models import Category, Product, Order, OrderItem, Review, Cart, User
 from .serializers import (
     CategorySerializer,
     ProductSerializer,
     OrderSerializer,
     OrderItemSerializer,
     ReviewSerializer,
-    CartSerializer
+    CartSerializer,
+    UserSerializer
 )
 
 from django.http import JsonResponse
 
 def getRoutes(request):
     routes = [
+        '/users/',
         '/categories/',
         '/products/',
         '/orders/',
@@ -20,6 +22,15 @@ def getRoutes(request):
         '/carts/',
     ]
     return JsonResponse({'routes': routes})
+
+
+class UserListView(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 class CategoryListView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
