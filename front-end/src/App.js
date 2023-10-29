@@ -5,6 +5,7 @@ import AboutPage from './pages/About';
 import ShopPage from './pages/ShopPage';
 import Dashboard from './pages/Admin/Dashboard';
 import AdminLogin from './pages/Admin/AdminLogin';
+import UserLogin from './pages/UserLogin';
 
 function App() {
   const isAuthenticated = checkUserAuthentication(); // Replace with your authentication logic
@@ -13,7 +14,8 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<UserLogin />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/shop" element={<ShopPage />} />
 
