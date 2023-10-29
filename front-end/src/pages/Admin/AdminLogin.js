@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function AdminLogin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Perform login authentication here using an API or any other method
     // If login is successful, navigate to the dashboard
-    history.push('/dashboard');
+    navigate('/admin/dashboard');
   };
 
   return (
