@@ -1,14 +1,36 @@
 import React, { useState } from 'react';
 
 const RegistrationForm = () => {
+    const [form] = Form.useForm();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const validateForm = async () => {
+    try {
+      await form.validateFields();
+      return true;
+    } catch (error) {
+      const newErrors = {};
+      error.errorFields.forEach((field) => {
+        newErrors[field.name[0]] = field.errors[0];
+      });
+      setErrors(newErrors);
+      return false;
+    }
+  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (password !== repeatPassword) {
+      setErrors({ repeatPassword: 'Passwords do not match' });
+      return;
+    }
 
     try {
       const response = await fetch('/api/register/', {
@@ -45,6 +67,9 @@ const RegistrationForm = () => {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          name="username"
+            validateStatus={errors.username && 'error'}
+            help={errors.username}
         />
       </div>
       <div>
@@ -62,6 +87,7 @@ const RegistrationForm = () => {
           value={repeatPassword}
           onChange={(e) => setRepeatPassword(e.target.value)}
         />
+        {errors.repeatPassword && <span>{errors.repeatPassword}</span>}
       </div>
       <div>
         <label>Email:</label>
