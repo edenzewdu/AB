@@ -20,7 +20,9 @@ function App() {
           <Route path="/shop" element={<ShopPage />} />
 
           <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin/dashboard" isAuthenticated={isAuthenticated} element={<Dashboard />} />
+          <Route >
+            <PrivateRoute path="/admin/dashboard" isAuthenticated={isAuthenticated} element={<Dashboard />} />
+          </Route>
         </Routes>
       </Router>
     </div>
