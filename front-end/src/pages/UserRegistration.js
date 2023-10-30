@@ -1,38 +1,22 @@
 import React, { useState } from 'react';
+import { Form, Input, Button } from 'antd';
 
 const RegistrationForm = () => {
-    const [form] = Form.useForm();
+  const [form] = Form.useForm();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [errors, setErrors] = useState({});
 
-  const validateForm = async () => {
+  const handleSubmit = async () => {
     try {
       await form.validateFields();
-      return true;
-    } catch (error) {
-      const newErrors = {};
-      error.errorFields.forEach((field) => {
-        newErrors[field.name[0]] = field.errors[0];
-      });
-      setErrors(newErrors);
-      return false;
-    }
-  };
+      // Form validation successful, continue with registration
+      if (password !== repeatPassword) {
+        throw new Error('Passwords do not match');
+      }
 
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (password !== repeatPassword) {
-      setErrors({ repeatPassword: 'Passwords do not match' });
-      return;
-    }
-
-    try {
       const response = await fetch('/api/register/', {
         method: 'POST',
         headers: {
@@ -60,53 +44,76 @@ const RegistrationForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Username:</label>
-        <input
+    <Form form={form} onFinish={handleSubmit}>
+      <Form.Item
+        name="username"
+        rules={[{ required: true, message: 'Please enter your username' }]}
+      >
+        <Input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          name="username"
-            validateStatus={errors.username && 'error'}
-            help={errors.username}
+          placeholder="Username"
         />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input
-          type="password"
+      </Form.Item>
+      <Form.Item
+        name="password"
+        rules={[{ required: true, message: 'Please enter your password' }]}
+      >
+        <Input.Password
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
         />
-      </div>
-      <div>
-        <label>Repeat Password:</label>
-        <input
-          type="password"
+      </Form.Item>
+      <Form.Item
+        name="repeatPassword"
+        rules={[
+          { required: true, message: 'Please repeat your password' },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+              return Promise.reject(new Error('Passwords do not match'));
+            },
+          }),
+        ]}
+      >
+        <Input.Password
           value={repeatPassword}
           onChange={(e) => setRepeatPassword(e.target.value)}
+          placeholder="Repeat Password"
         />
-        {errors.repeatPassword && <span>{errors.repeatPassword}</span>}
-      </div>
-      <div>
-        <label>Email:</label>
-        <input
+      </Form.Item>
+      <Form.Item
+        name="email"
+        rules={[{ required: true, message: 'Please enter your email' }]}
+      >
+        <Input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
         />
-      </div>
-      <div>
-        <label>Phone Number:</label>
-        <input
+      </Form.Item>
+      <Form.Item
+        name="phoneNumber"
+        rules={[{ required: true, message: 'Please enter your phone number' }]}
+      >
+        <Input
           type="text"
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
+          placeholder="Phone Number"
         />
-      </div>
-      <button type="submit">Register</button>
-    </form>
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">
+          Register
+        </Button>
+      </Form.Item>
+    </Form>
   );
 };
 
