@@ -6,6 +6,7 @@ import ShopPage from './pages/ShopPage';
 import Dashboard from './pages/Admin/Dashboard';
 import AdminLogin from './pages/Admin/AdminLogin';
 import UserLogin from './pages/UserLogin';
+import RegistrationForm from './pages/UserRegistration';
 
 function App() {
   const isAuthenticated = checkUserAuthentication(); // Replace with your authentication logic
@@ -18,19 +19,17 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/shop" element={<ShopPage />} />
+          <Route path="/userRegister" element={<RegistrationForm />} />
 
           <Route path="/admin/login" element={<AdminLogin />} />
-          <Route >
-            <PrivateRoute path="/admin/dashboard" isAuthenticated={isAuthenticated} element={<Dashboard />} />
-          </Route>
+          <Route
+            path="/admin/dashboard"
+            element={isAuthenticated ? <Dashboard /> : <Navigate to="/admin/login" replace />}
+          />
         </Routes>
       </Router>
     </div>
   );
-}
-
-function PrivateRoute({ isAuthenticated, element }) {
-  return isAuthenticated ? element : <Navigate to="/admin/login" replace />;
 }
 
 function checkUserAuthentication() {

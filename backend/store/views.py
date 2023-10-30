@@ -1,4 +1,10 @@
 from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework import status
+from django.contrib.auth import authenticate, login
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework import generics
 from .models import Category, Product, Order, OrderItem, Review, Cart, User
 from .serializers import (
     CategorySerializer,
@@ -24,6 +30,26 @@ def getRoutes(request):
     return JsonResponse({'routes': routes})
 
 
+@csrf_exempt
+def login_view(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+
+    # Check if the username is an email
+    if '@' in username:
+        user = CustomUser.objects.filter(email=username).first()
+        if user:
+            username = user.username
+
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return JsonResponse({'message': 'Login successful'})
+    else:
+        return JsonResponse({'message': 'Invalid credentials'}, status=401)
+    
+
+
 class UserListView(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -31,15 +57,20 @@ class UserListView(generics.ListCreateAPIView):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            self.perform_create(serializer)
-            headers = self.get_success_headers(serializer.data)
-            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+            # Save the user instance
+            user = serializer.save()
+            
+            # Set the password for the user
+            user.set_password(serializer.validated_data['password'])
+            user.save()
+            
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserUpdateView(generics.UpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    
+
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer

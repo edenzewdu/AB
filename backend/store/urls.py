@@ -16,4 +16,5 @@ urlpatterns = [
     path('reviews/<int:pk>/', views.ReviewDetailView.as_view(), name='review-detail'),
     path('carts/', views.CartListView.as_view(), name='cart-list'),
     path('carts/<int:pk>/', views.CartDetailView.as_view(), name='cart-detail'),
+    path('login/', views.login_view, name='login'),
 ]

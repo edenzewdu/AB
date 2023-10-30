@@ -8,6 +8,7 @@ const RegistrationForm = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [role, setRole] = useState('customer');
 
   const handleSubmit = async () => {
     try {
@@ -17,7 +18,7 @@ const RegistrationForm = () => {
         throw new Error('Passwords do not match');
       }
 
-      const response = await fetch('/api/register/', {
+      const response = await fetch('http://127.0.0.1:8000/store/users/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -27,7 +28,7 @@ const RegistrationForm = () => {
           password,
           email,
           phone_number: phoneNumber,
-          role: 'customer',
+          role, 
         }),
       });
 

@@ -1,38 +1,58 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-function UserLogin() {
-  const [email, setEmail] = useState('');
+const LoginForm = () => {
+  const [usernameOrEmail, setUsernameOrEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Perform login authentication here using an API or any other method
-    // If login is successful, navigate to the user dashboard
-    navigate('/dashboard');
+
+    try {
+      const response = await fetch('/api/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: usernameOrEmail,
+          password: password,
+        }),
+      });
+
+      if (response.ok) {
+        // Login successful, handle accordingly (e.g., redirect to dashboard)
+        console.log('Login successful');
+      } else {
+        setError('Invalid credentials');
+      }
+    } catch (error) {
+      console.error('Error during login', error);
+    }
   };
 
   return (
-    <div>
-      <h2>User Login</h2>
-      <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>Username or Email:</label>
         <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          value={usernameOrEmail}
+          onChange={(e) => setUsernameOrEmail(e.target.value)}
         />
+      </div>
+      <div>
+        <label>Password:</label>
         <input
           type="password"
-          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+      </div>
+      {error && <span>{error}</span>}
+      <button type="submit">Login</button>
+    </form>
   );
-}
+};
 
-export default UserLogin;
+export default LoginForm;
