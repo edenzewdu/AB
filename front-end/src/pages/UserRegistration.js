@@ -2,27 +2,27 @@ import React, { useState } from 'react';
 
 const RegistrationForm = () => {
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [profilePicture, setProfilePicture] = useState(null);
-  const [address, setAddress] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('username', username);
-    formData.append('email', email);
-    formData.append('password', password);
-    formData.append('profile_picture', profilePicture);
-    formData.append('address', address);
-    formData.append('phone_number', phoneNumber);
-
     try {
       const response = await fetch('/api/register/', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+          email,
+          phone_number: phoneNumber,
+          role: 'customer',
+        }),
       });
 
       if (response.ok) {
@@ -48,14 +48,6 @@ const RegistrationForm = () => {
         />
       </div>
       <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div>
         <label>Password:</label>
         <input
           type="password"
@@ -64,19 +56,19 @@ const RegistrationForm = () => {
         />
       </div>
       <div>
-        <label>Profile Picture:</label>
+        <label>Repeat Password:</label>
         <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setProfilePicture(e.target.files[0])}
+          type="password"
+          value={repeatPassword}
+          onChange={(e) => setRepeatPassword(e.target.value)}
         />
       </div>
       <div>
-        <label>Address:</label>
+        <label>Email:</label>
         <input
-          type="text"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div>
