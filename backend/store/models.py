@@ -9,9 +9,8 @@ class User(AbstractUser):
     )
     
     role = models.CharField(max_length=50, choices=ROLE_CHOICES, default='customer')
-    profile_picture = models.ImageField(upload_to='user_profile_pictures')
-    address = models.CharField(max_length=255)
-    phone_number = models.CharField(max_length=20)
+    profile_picture = models.ImageField(upload_to='user_profile_pictures', null=True, blank=True)
+    phone_number = models.CharField(max_length=20, unique=True)
     is_subscribed = models.BooleanField(default=False)
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=150, unique=True)
@@ -42,16 +41,28 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
     size = models.CharField(max_length=20)
-    color = models.CharField(max_length=50)
+    tlet = models.CharField(max_length=50)
     availability = models.BooleanField(default=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='product_images')
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
     order_date = models.DateTimeField(auto_now_add=True)
-    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     payment_status = models.BooleanField(default=False)
+    quantity = models.PositiveIntegerField(default=1)
+    height_shoulder_to_foot = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    height_shoulder_to_waist = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    height_waist_to_foot = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    chest = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    waist = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    hips = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    shoulder = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    sleeve_hand_bended = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    amount_paid = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)

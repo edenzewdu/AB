@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
+import { Form, Input, Button } from 'antd';
 
 const LoginForm = () => {
+  const [form] = Form.useForm();
   const [usernameOrEmail, setUsernameOrEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async () => {
     try {
-      const response = await fetch('/api/login/', {
+      const response = await fetch('http://127.0.0.1:8000/store/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,26 +32,40 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Username or Email:</label>
-        <input
+    <Form form={form} onFinish={handleSubmit}>
+      <Form.Item
+        label="Username or Email"
+        name="username"
+        rules={[{ required: true, message: 'Please enter your username or email' }]}
+      >
+        <Input
           type="text"
           value={usernameOrEmail}
           onChange={(e) => setUsernameOrEmail(e.target.value)}
+          placeholder="Username or Email"
         />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input
+      </Form.Item>
+      <Form.Item
+        label="Password"
+        name="password"
+        rules={[{ required: true, message: 'Please enter your password' }]}
+      >
+        <Input.Password
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder='Password'
         />
-      </div>
+      </Form.Item>
+      <Form.Item>
+                <Button type="primary" htmlType="submit">
+                Login
+                </Button>
+            </Form.Item>
+      
       {error && <span>{error}</span>}
-      <button type="submit">Login</button>
-    </form>
+
+    </Form>
   );
 };
 
