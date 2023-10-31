@@ -1,12 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Home from './pages/Home';
-import AboutPage from './pages/About';
-import ShopPage from './pages/ShopPage';
-import AdminLogin from './pages/Admin/AdminLogin';
-import UserLogin from './pages/UserLogin';
-import RegistrationForm from './pages/UserRegistration';
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import Topbar from "./pages/Admin/scenes/global/Topbar";
 import Sidebar from "./pages/Admin/scenes/global/Sidebar";
 import Dashboard from "./pages/Admin/scenes/dashboard";
@@ -23,30 +16,12 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import Calendar from "./pages/Admin/scenes/calendar/calendar";
 
-
 function App() {
-  const isAuthenticated = checkUserAuthentication(); // Replace with your authentication logic
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
 
   return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/login" element={<UserLogin />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/shop" element={<ShopPage />} />
-          <Route path="/userRegister" element={<RegistrationForm />} />
-
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route
-            path="/admin/dashboard"
-            element={isAuthenticated ? <Dashboard /> : <Navigate to="/admin/login" replace />}
-          />
-        </Routes>
-      </Router>
-      <ColorModeContext.Provider value={colorMode}>
+    <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app">
@@ -70,13 +45,7 @@ function App() {
         </div>
       </ThemeProvider>
     </ColorModeContext.Provider>
-    </div>
   );
-}
-
-function checkUserAuthentication() {
-  const token = localStorage.getItem('token'); // Example: Check if a token exists in local storage
-  return !!token; // Return true if a token exists, false otherwise
 }
 
 export default App;

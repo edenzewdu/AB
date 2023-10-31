@@ -67,7 +67,7 @@
 import React from 'react';
 import { useSpring, animated } from 'react-spring';
 import './Home.css';
-import Header from './Header.js';
+import Header from './pages/Header.js';
 import netelaAnimationImage from '../Images/netelaAnimation.jpg';
 import netellaImage from '../Images/netelaAnimation-removebg-preview.png';
 import wardrobeImage from '../Images/wardrobe.png';
@@ -90,7 +90,7 @@ const AnimatedObject = ({ image, animationDelay }) => {
 const Home = () => {
   return (
     <div className="home">
-      <script src="src/index.js"></script>
+      <script src="src/pages/index.js"></script>
       <Header />
       <div className="body">
         {/* <div className="background">
