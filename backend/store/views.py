@@ -32,14 +32,16 @@ def getRoutes(request):
 
 @csrf_exempt
 def login_view(request):
-    username = request.POST.get('username')
+    identifier = request.POST.get('identifier')
     password = request.POST.get('password')
 
-    # Check if the username is an email
-    if '@' in username:
-        user = CustomUser.objects.filter(email=username).first()
+    # Check if the identifier is an email
+    if identifier is not None and '@' in identifier:
+        user = CustomUser.objects.filter(email=identifier).first()
         if user:
             username = user.username
+    else:
+        username = identifier
 
     user = authenticate(request, username=username, password=password)
     if user is not None:

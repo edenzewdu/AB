@@ -40,7 +40,7 @@
     color: transparent;
     font-family: Arial;
     text-transform: capitalize;
-    background-image: url(../Images/images.jpg);
+    background-image: url(../Images/logobackground.png);
     -webkit-background-clip: text;
     background-position: 0 0;
     animation: back 40s linear infinite;
@@ -51,33 +51,6 @@
     background-position: 2000px 0;
 }
 }
-
-/*logo*/
-.logo-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.particles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.logo-text {
-  font-size: 24px;
-  font-weight: bold;
-  color: #ffffff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
 
 .logo {
   width: 75%;
@@ -140,7 +113,7 @@
 }
 
 .home {
-  background-color: black;
+  background-image: url(https://codesandbox.io/s/tsparticles-forked-ms7c82);
   color: white;
   height: 100vh;
 }

@@ -1,13 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import { useSpring, animated } from 'react-spring';
-import './Home.css';
-import Header from './Header.js';
-import netelaAnimationImage from '../Images/netelaAnimation.jpg';
-import netellaImage from '../Images/netelaAnimation-removebg-preview.png';
-import wardrobeImage from '../Images/wardrobe.png';
-import backgroundImage from '../Images/giphy.gif';
-
-
 // const NetelaAnimation = () => {
 //   const [scrollPosition, setScrollPosition] = useState(0);
 //   const [netelaVisible, setNetelaVisible] = useState(false);
@@ -73,6 +63,16 @@ import backgroundImage from '../Images/giphy.gif';
 //   );
 // };
 
+
+import React from 'react';
+import { useSpring, animated } from 'react-spring';
+import './Home.css';
+import Header from './Header.js';
+import netelaAnimationImage from '../Images/netelaAnimation.jpg';
+import netellaImage from '../Images/netelaAnimation-removebg-preview.png';
+import wardrobeImage from '../Images/wardrobe.png';
+// import backgroundImage from '../Images/giphy.gif';
+
 const AnimatedObject = ({ image, animationDelay }) => {
   const animatedProps = useSpring({
     from: { opacity: 0, transform: 'translateY(100px)' },
@@ -92,9 +92,9 @@ const Home = () => {
     <div className="home">
       <Header />
       <div className="body">
-        <div className="background">
-          {/* <img src={backgroundImage} alt="Background" /> */}
-             </div>
+        {/* <div className="background">
+          <img src={backgroundImage} alt="Background" />
+        </div> */}
         <div className="content">
           <h1>Welcome to Ethiopian Traditions</h1>
           <p>Discover the beauty of traditional Ethiopian clothing</p>

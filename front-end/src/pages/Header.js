@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import lottie from 'lottie-web';
 import { defineElement } from '@lordicon/element';
-import logo from '../Images/Lordicon/logo.JSON';
+import logo from '../Images/logobackground.png';
 
 // Define "lord-icon" custom element with default properties
 defineElement(lottie.loadAnimation);

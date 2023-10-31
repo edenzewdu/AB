@@ -9,13 +9,14 @@ const LoginForm = () => {
 
   const handleSubmit = async () => {
     try {
+      console.log(password,usernameOrEmail);
       const response = await fetch('http://127.0.0.1:8000/store/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username: usernameOrEmail,
+          identifier: usernameOrEmail,
           password: password,
         }),
       });
@@ -58,11 +59,11 @@ const LoginForm = () => {
         />
       </Form.Item>
       <Form.Item>
-                <Button type="primary" htmlType="submit">
-                Login
-                </Button>
-            </Form.Item>
-      
+        <Button type="primary" htmlType="submit">
+          Login
+        </Button>
+      </Form.Item>
+
       {error && <span>{error}</span>}
 
     </Form>
