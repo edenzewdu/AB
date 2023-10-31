@@ -93,12 +93,13 @@ const Header = () => {
         {/* <img src={logoUrl} alt='logo' /> */}
       </div>
       {/* Menu */}
+      <div className="brand-title">AB ethiopian traditional clothes</div>
       <div className={`menu ${isMenuOpen ? 'open' : ''}`}>
         <ul>
           <a href='/home'><li>Home</li></a>
           <a href='/about'><li>About</li></a>
-          <li>Services</li>
-          <li>Contact</li>
+          <a href='/services'><li>Services</li></a>
+          <a href='/contactus'><li>Contact</li></a>
         </ul>
       </div>
       <button className="menu-toggle" onClick={toggleMenu}>
