@@ -1,13 +1,13 @@
 import React from 'react';
-import Particles from 'react-particles-js';
+import { TSParticles } from 'react-tsparticles';
 import './Home.css';
 
 const EthiopianTraditionalLogo = () => {
   return (
     <div className="logo-container">
-      <Particles
+      <TSParticles
         className="particles"
-        params={{
+        options={{
           particles: {
             number: {
               value: 80,
