@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import lottie from 'lottie-web';
 import { defineElement } from '@lordicon/element';
 import logo from '../Images/logobackground.png';
+import Logo from "./logo.js";
 
 // Define "lord-icon" custom element with default properties
 defineElement(lottie.loadAnimation);
@@ -93,7 +94,8 @@ const Header = () => {
         {/* <img src={logoUrl} alt='logo' /> */}
       </div>
       {/* Menu */}
-      <div className="brand-title">AB ethiopian traditional clothes</div>
+      <Logo />
+      <div className="brand-title"> ethiopian traditional clothes</div>
       <div className={`menu ${isMenuOpen ? 'open' : ''}`}>
         <ul>
           <a href='/home'><li>Home</li></a>

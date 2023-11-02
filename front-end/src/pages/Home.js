@@ -90,6 +90,7 @@ const AnimatedObject = ({ image, animationDelay }) => {
 const Home = () => {
   return (
     <div className="home">
+      <script src="src/index.js"></script>
       <Header />
       <div className="body">
         {/* <div className="background">

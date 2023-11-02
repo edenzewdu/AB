@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Particles from 'react-tsparticles';
 import './Home.css';
 
 const EthiopianTraditionalLogo = () => {
+  const [isTableExposed, setIsTableExposed] = useState(false);
+
+  const handleTableclothClick = () => {
+    setIsTableExposed(true);
+  };
   return (
     <div className="logo-container">
+      <div
+        className={`tablecloth ${isTableExposed ? 'exposed' : ''}`}
+        onClick={handleTableclothClick}
+      >
       <Particles
         className="particles"
         params={{
@@ -110,6 +119,7 @@ const EthiopianTraditionalLogo = () => {
         }}
       />
       <div className="logo-text">Ethiopian Traditional Clothes</div>
+    </div>
     </div>
   );
 };
