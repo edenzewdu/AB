@@ -7,7 +7,6 @@ import Dashboard from './pages/Admin/Dashboard';
 import AdminLogin from './pages/Admin/AdminLogin';
 import UserLogin from './pages/UserLogin';
 import RegistrationForm from './pages/UserRegistration';
-import EthiopianTraditionalLogo from './pages/EthiopianTraditionalLogo';
 
 
 function App() {
@@ -22,7 +21,6 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/userRegister" element={<RegistrationForm />} />
-          <Route path="/logo" element={<EthiopianTraditionalLogo />} />
 
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route

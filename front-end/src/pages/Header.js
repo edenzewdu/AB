@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import lottie from 'lottie-web';
 import { defineElement } from '@lordicon/element';
-import logo from '../Images/logobackground.png';
-import Logo from "./logo.js";
+import logo from '../Images/logoimg.png';
 
 // Define "lord-icon" custom element with default properties
 defineElement(lottie.loadAnimation);
@@ -91,11 +90,20 @@ const Header = () => {
       </div>
       <div className='logo'>
         {/* Use the JSON data to set the image source */}
-        {/* <img src={logoUrl} alt='logo' /> */}
+        { <img
+              alt="logoimg"
+              src={logo}
+              className="logoimg"
+              style={{
+                width: '50px',
+                height: '50px',
+                borderRadius: '50%',
+                marginRight: '10px',
+              }}
+            /> }
       </div>
       {/* Menu */}
-      <Logo />
-      <div className="brand-title"> ethiopian traditional clothes</div>
+      <div className="brand-title">AB ethiopian traditional clothes</div>
       <div className={`menu ${isMenuOpen ? 'open' : ''}`}>
         <ul>
           <a href='/home'><li>Home</li></a>
