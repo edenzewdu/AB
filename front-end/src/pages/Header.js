@@ -90,20 +90,19 @@ const Header = () => {
       </div>
       <div className='logo'>
         {/* Use the JSON data to set the image source */}
-        { <img
+      </div>
+      {/* Menu */}
+      <div className="brand-title">{ <img
               alt="logoimg"
               src={logo}
               className="logoimg"
               style={{
-                width: '50px',
-                height: '50px',
+                width: '200px',
+                height: '200px',
                 borderRadius: '50%',
                 marginRight: '10px',
               }}
-            /> }
-      </div>
-      {/* Menu */}
-      <div className="brand-title">AB ethiopian traditional clothes</div>
+            /> } AB ethiopian traditional clothes</div>
       <div className={`menu ${isMenuOpen ? 'open' : ''}`}>
         <ul>
           <a href='/home'><li>Home</li></a>
